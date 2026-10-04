@@ -21,7 +21,7 @@ CA2 is not present. Some tasks appear only in the handouts, and some notebooks i
 - [lectures/](lectures/): slides for Chapters 2–7.
 - [archives/](archives/): packaged assignments and dataset archives, plus copies previously stored at assignment roots. Archive contents have been left intact.
 
-Alternate notebook versions remain in their question folders. Local datasets, checkpoints, and outputs stay beside the notebooks that use them; most are excluded from Git and may need to be obtained separately after cloning.
+Alternate notebook versions remain in their question folders. Working datasets, checkpoints, and outputs stay beside the notebooks that use them. Their contents are published as split archives with a checksum manifest; see [archives/README.md](archives/README.md) for restoration instructions.
 
 ## Working with the notebooks
 
@@ -32,6 +32,6 @@ cd assignments/ca6/q1
 jupyter lab
 ```
 
-The main dependencies are Python, Jupyter, TensorFlow/Keras, and PyTorch/torchvision. Individual notebooks also use libraries such as scikit-learn, Hugging Face Datasets/Transformers, PEFT, statsmodels, and torchmetrics. Check their imports and dataset paths before running them; there is no shared environment file.
+The main dependencies are Python, Jupyter, TensorFlow/Keras, and PyTorch/torchvision. Individual notebooks also use libraries such as scikit-learn, Hugging Face Datasets/Transformers, PEFT, statsmodels, and torchmetrics. Check their imports and restore the data for the assignment before running it; there is no shared environment file.
 
 Saved outputs are retained, including failed or interrupted runs. Rerunning a notebook can require substantial training time and model downloads. The small Python exports do not always contain the full notebook workflow.
