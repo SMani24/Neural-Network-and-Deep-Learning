@@ -2,4 +2,32 @@ NNenv*
 *.deb
 *.csv
 *.zip
-/CA3/Q1/Data
+*.jpg
+*.png
+*.h5
+*json
+
+# Local analysis
+/neural_networks_deep_learning_repository_analysis.md
+
+# Notebook and Python caches
+.ipynb_checkpoints/
+__pycache__/
+*.py[cod]
+.~lock.*#
+.DS_Store
+
+# Local datasets and training artifacts
+/assignments/**/Data/
+/assignments/**/Dataset/
+/assignments/**/data/
+/assignments/**/dataset/
+/assignments/**/untransformed_data/
+/assignments/**/plant_disease_dataset/
+/assignments/**/processed/
+/assignments/**/checkpoints/
+/assignments/**/logs/
+*.pth
+*.pt
+*.keras
+*.arrow
