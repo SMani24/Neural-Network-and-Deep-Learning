@@ -33,4 +33,4 @@ cd archives/ca3
 sha256sum -c camvid_main.parts.sha256
 ```
 
-The smaller assignment ZIPs open directly. Newly packaged working files use standard tar/XZ archives; after joining their parts, extract from the repository root with `tar -xJf archive.tar.xz` to recover their original paths.
+The smaller assignment ZIPs open directly. Newly packaged working files use standard tar/XZ or tar/gzip archives. After joining their parts, extract from the repository root with `tar -xJf archive.tar.xz` or `tar -xzf archive.tar.gz` to recover their original paths.

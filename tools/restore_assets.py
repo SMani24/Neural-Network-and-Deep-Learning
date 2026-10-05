@@ -221,7 +221,7 @@ class Restorer:
                         self.write(path, reader)
                     else:
                         wanted = {name for name in package['files'] if name not in self.done}
-                        with tarfile.open(fileobj=reader, mode='r|xz') as archive:
+                        with tarfile.open(fileobj=reader, mode='r|gz' if package['format'] == 'tar_gz' else 'r|xz') as archive:
                             for member in archive:
                                 if member.name in wanted:
                                     if not self.present(member.name):
