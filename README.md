@@ -23,7 +23,9 @@ CA2 is not present. Some tasks appear only in the handouts, and some notebooks i
 
 Alternate notebook versions remain in their question folders. Working datasets, checkpoints, and outputs stay beside the notebooks that use them. Their contents are published as split archives with a checksum manifest; see [archives/README.md](archives/README.md) for restoration instructions.
 
-Recovered notebooks are documented with the [CAe Q1 versions](assignments/cae/q1/README.md) and [CA5 Q2 versions](assignments/ca5/q2/README.md). The CAe extended notebook has the most complete write-up; the recovered copies preserve additional run states.
+For CAe Q1, start with `Q1_extended.ipynb` for the most complete write-up. The [recovered split notebook](assignments/cae/q1/Q1_recovered_split.ipynb) has additional adversarial-training logs. The [Q1 version notes](assignments/cae/q1/README.md) explain the other copies.
+
+The recovered CA5 Q2 notebook is another export of the same work, so `Q2.ipynb` remains the main version. See the [Q2 version notes](assignments/ca5/q2/README.md) for the alternate copies.
 
 ## Working with the notebooks
 
