@@ -125,6 +125,21 @@ class Restorer:
         self.done = set()
         self.restored = 0
         self.active = set()
+        self.zip_archives = collections.OrderedDict()
+
+    def zip_archive(self, source):
+        if source not in self.zip_archives:
+            self.zip_archives[source] = zipfile.ZipFile(source)
+        self.zip_archives.move_to_end(source)
+        while len(self.zip_archives) > 4:
+            _, old = self.zip_archives.popitem(last=False)
+            old.close()
+        return self.zip_archives[source]
+
+    def close(self):
+        for archive in self.zip_archives.values():
+            archive.close()
+        self.zip_archives.clear()
 
     def target(self, path):
         target = (self.destination / path).resolve()
@@ -193,7 +208,7 @@ class Restorer:
             elif 'archive' in rep:
                 source = self.source(rep['archive'])
                 if rep['kind'] == 'zip':
-                    with zipfile.ZipFile(source) as archive, archive.open(rep['member']) as stream:
+                    with self.zip_archive(source).open(rep['member']) as stream:
                         self.write(path, stream)
                 else:
                     with tarfile.open(source, 'r:gz') as archive:
@@ -239,14 +254,17 @@ def main():
             print(f'{key}: {count:,} files, {size / 1e9:.2f} GB restored')
         return
     restorer = Restorer(manifest, args.destination)
-    for index, path in enumerate(files, 1):
-        if args.verify:
-            if not restorer.present(path):
-                raise RuntimeError('Missing working file: ' + path)
-        else:
-            restorer.ensure(path)
-        if index % 1000 == 0:
-            print(f'Checked {index:,}/{len(files):,} files', flush=True)
+    try:
+        for index, path in enumerate(files, 1):
+            if args.verify:
+                if not restorer.present(path):
+                    raise RuntimeError('Missing working file: ' + path)
+            else:
+                restorer.ensure(path)
+            if index % 1000 == 0:
+                print(f'Checked {index:,}/{len(files):,} files', flush=True)
+    finally:
+        restorer.close()
     print(f'Checked {len(files):,} files; restored {restorer.restored:,}. SHA-256 verification passed.')
 
 
